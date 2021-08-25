@@ -1,0 +1,16 @@
+.form-control {
+    max-width: 500px;
+    border: 1px solid;
+    border-right: none;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+
+.btn {
+    border: 1px solid;
+    border-left: none;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
