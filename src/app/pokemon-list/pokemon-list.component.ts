@@ -10,6 +10,7 @@ import { LoginService } from "../services/login.service";
 export class PokemonListComponent implements OnInit {
 
     public loggedIn: boolean;
+    public userName :string | null = localStorage.getItem('userName');
     
     constructor(private readonly _loginService: LoginService) {
         this.loggedIn = this._loginService.getLoggedInStatus();

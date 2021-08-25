@@ -1,6 +1,5 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { CanActivate, Router } from "@angular/router";
-import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -8,9 +7,12 @@ import { Observable } from "rxjs";
 export class LoginService implements CanActivate{
 
     private _loggedIn: boolean;
+    private _userName: string | null;
 
     constructor(private _router: Router){
         this._loggedIn = false;
+        this._userName = localStorage.getItem('userName');
+        this.isLoggedIn();
     }
 
     canActivate(): boolean {
@@ -27,5 +29,9 @@ export class LoginService implements CanActivate{
 
     public getLoggedInStatus() {
         return this._loggedIn;
+    }
+
+    private isLoggedIn() {
+        this._loggedIn = this._userName === null ? false : true;
     }
 }

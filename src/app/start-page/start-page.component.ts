@@ -9,20 +9,32 @@ import { Router } from "@angular/router";
 })
 export class StartPageComponent implements OnInit {
 
-    public loggedIn: boolean;
+
+    //private userName: string;
+    public placeHolder : string = "Enter name";
 
     constructor(
         private readonly loginService: LoginService,
         private readonly _router: Router
-        ) {
-        this.loggedIn = this.loginService.getLoggedInStatus();
-    }
+        ) {}
+
     ngOnInit(): void {
         console.log('Start page')
     }
+
+    public get loggedIn():boolean {
+        return this.loginService.getLoggedInStatus();
+    }
     
-    onLoggedInClicked() {
-        this.loginService.setLoggedIn(true);
-        this._router.navigate(['/pokemons'])
+    onSubmit(event: any) {
+        let input: string = event.target.userInput.value
+        if(input === "") {
+            this.placeHolder = "You must enter a name!!"
+        } else {
+            this.loginService.setLoggedIn(true);
+            localStorage.setItem('userName', event.target.userInput.value)
+            this._router.navigate(['/pokemons'])
+        }
+        
     }
 }
