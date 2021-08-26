@@ -1,14 +1,13 @@
 <div class="container">
     <h3 class="d-flex justify-content-center mt-5">Welcome to Pokemon World</h3>
+    <form (ngSubmit)="onSubmit($event)">
         <div class="input-group mt-5 col-sm-2 d-flex justify-content-center">
-            <form (ngSubmit)="onSubmit($event)">
-                <input type="text" name="userInput" id="name" class="form-control" placeholder="{{ placeHolder }}" >
-                    <button class="btn" type="submit">
-                        <span class="material-icons">
-                            arrow_forward
-                        </span>
-                    </button>
-            </form>
-            
+            <input type="text" name="userInput" id="name" class="form-control" placeholder="{{ placeHolder }}" >
+            <button class="btn" type="submit">
+                <span class="material-icons">
+                    arrow_forward
+                </span>
+            </button>
         </div>
+    </form>
 </div>

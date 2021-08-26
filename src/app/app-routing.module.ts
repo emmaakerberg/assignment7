@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { PokemonListComponent } from "./pokemon-list/pokemon-list.component";
 import { StartPageComponent } from "./start-page/start-page.component";
 import { LoginService } from "./services/login.service";
+import { UserNameService } from "./services/user-name.service";
 
 const routes: Routes = [
     {
@@ -13,7 +14,8 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        component: StartPageComponent
+        component: StartPageComponent,
+        canActivate: [UserNameService]
     },
     {
         path: 'pokemons',
