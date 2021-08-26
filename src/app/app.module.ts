@@ -8,13 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { LoginService } from './services/login.service';
 import { StartPageComponent } from './start-page/start-page.component';
+import { ProfilePage } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
     HeaderComponent,
-    PokemonListComponent
+    PokemonListComponent,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
