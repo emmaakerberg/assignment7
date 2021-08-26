@@ -19,6 +19,7 @@ export class ProfilePage {
 
     logOut() {
         localStorage.clear();
+        this._loginService.setLoggedIn(false);
         this._router.navigate(['/login'])
     }
 
