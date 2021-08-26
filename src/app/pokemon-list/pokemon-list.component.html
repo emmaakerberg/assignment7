@@ -1,4 +1,28 @@
 <h4>Welcome {{ userName }}</h4>
-<ul>
-    <li *ngFor="let pokemon of pokemons"> {{ pokemon.name }}</li>
-</ul>
+<div class="container m-3">
+    <div *ngIf="pokemons" class="PokemonCard">
+        <div id="info-top">
+            <p id="pokemon-name">{{pokemons[0].name}}</p>
+            <p id="pokemon-hp">{{pokemons[0].stats[0].base}} {{pokemons[0].stats[0].name.toUpperCase()}}</p>
+        </div>
+        <img src ="{{pokemons[0].img}}">
+        <br>
+        <p class="size">Height: {{pokemons[0].height}} dm, Weight: {{pokemons[0].weight}} hg</p>
+        
+            <span class="label">Type(s): </span>
+            <span *ngFor="let type of pokemons[1].types" class="pokemon-type">{{type}} </span>
+            
+        <div id="info-bottom">
+            <div id="bottom-left">
+                <p class="label">Stats:</p>
+                <p>{{pokemons[0].stats[1].base}} {{pokemons[0].stats[1].name}}</p>
+                <p>{{pokemons[0].stats[2].base}} {{pokemons[0].stats[2].name}}</p>
+                <p>{{pokemons[0].stats[5].base}} {{pokemons[0].stats[5].name}}</p>
+            </div>
+            <div id="bottom-right">
+                <p class="label">Abilities:</p>
+                <p *ngFor="let ability of pokemons[0].abilities">{{ability}}</p>
+            </div>
+        </div>
+    </div>
+</div>

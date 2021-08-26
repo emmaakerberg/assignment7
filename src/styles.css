@@ -4,3 +4,73 @@
     margin: 0;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
+.PokemonCard {
+    margin-top: 10px;
+    height: 360px;
+    width: 250px;
+    border-radius: 10px;
+    border: 9px solid;
+    border-color: rgb(255, 230, 0);
+    background-color: rgb(255, 230, 176);
+    text-align: center;
+}
+
+.PokemonCard img {
+    height:100px;
+    width: 190px;
+    object-fit: cover;
+    background-color: rgb(250, 217, 146);
+    border: 3px solid;
+    border-color: rgb(255, 208, 53);
+    margin-top: 0;
+}
+
+
+#info-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+#info-bottom {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+#bottom-right {
+    margin-right: 15px;
+}
+
+#bottom-left {
+    border-right: 1px solid;
+    border-color: rgba(153, 152, 152, 0.356);
+    width: 50%;
+    margin: 0;
+}
+
+.PokemonCard p {
+    margin-bottom: 0;
+}
+
+#pokemon-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 20px;
+}
+#pokemon-hp {
+    color:rgb(252, 89, 40);
+    font-weight: bolder;
+    font-size: 1.1em;
+    margin-right: 20px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.size {
+    font-size: 0.8em;
+    max-width: 190px;
+    margin:auto;
+    padding: 3px 0;
+    background-color: rgb(255, 208, 53);
+}

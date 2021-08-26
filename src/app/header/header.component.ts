@@ -17,7 +17,7 @@ export class HeaderComponent {
 
 
 
-    get status():any|undefined{
+    get status() {
         return this.logInService.getLoggedInStatus()
     }
 

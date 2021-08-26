@@ -1,3 +1,4 @@
+import { SlicePipe } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core"
 import { Pokemon } from "../models/pokemon.model";
@@ -33,11 +34,11 @@ export class PokemonListComponent implements OnInit{
                             .subscribe(
                                 (pokemon: any) => {
                                     let tempPokemon: Pokemon ={
-                                        name: pokemon.name,
+                                        name: this.toUpperCase(pokemon.name),
                                         height: pokemon.height,
                                         weight: pokemon.weight,
                                         types: [...pokemon.types].map(t => t.type.name),
-                                        sprites: pokemon.sprites,
+                                        img: pokemon.sprites.front_default,
                                         stats: [...pokemon.stats].map(s => s = {
                                             name: s.stat.name,
                                             base: s.base_stat
@@ -54,6 +55,10 @@ export class PokemonListComponent implements OnInit{
                 }
                 
             )
+    }
+
+    private toUpperCase(name: string) {
+        return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
     

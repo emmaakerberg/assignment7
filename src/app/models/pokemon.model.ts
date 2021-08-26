@@ -5,7 +5,7 @@ export interface Pokemon {
     abilities: string[]
     types: string[]
     stats: Stats[]
-    sprites: object
+    img: string
 }
 
 export interface Stats {
