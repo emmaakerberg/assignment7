@@ -8,7 +8,9 @@ export class LoginService implements CanActivate{
 
     private _loggedIn: boolean = false;
 
-    constructor(private readonly _router: Router){
+    constructor(
+        private readonly _router: Router
+        ){
     }
 
     canActivate(): boolean {

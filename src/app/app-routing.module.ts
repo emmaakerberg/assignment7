@@ -11,7 +11,6 @@ const routes: Routes = [
         path: '',
         pathMatch: 'full',
         redirectTo: '/login'
-        
     },
     {
         path: 'login',
@@ -26,6 +25,10 @@ const routes: Routes = [
     {
         path: 'profile',
         component: ProfilePage
+    },
+    {
+        path: '**',
+        redirectTo: '/login'
     }
 ]
 @NgModule({
