@@ -13,7 +13,7 @@ export class UserNameService {
         private readonly _router: Router,
         private readonly _loginService: LoginService
         ){
-        this._userName = localStorage.getItem('userName');
+        this._userName = localStorage.getItem("userName");
     }
 
     canActivate(): boolean {
@@ -24,5 +24,13 @@ export class UserNameService {
             return false;
         }
         return true;
+    }
+
+    get userName() {
+        return this._userName;
+    }
+
+    setUserName(name :string | null) {
+        this._userName = name;
     }
 }

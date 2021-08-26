@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { LoginService } from "../services/login.service";
 import { Router } from "@angular/router";
+import { UserNameService } from "../services/user-name.service";
 
 @Component({
     selector: 'app-start-page',
@@ -15,7 +16,8 @@ export class StartPageComponent implements OnInit {
     @Output() showProfileEvent = new EventEmitter<string>()
 
     constructor(
-        private readonly loginService: LoginService,
+        private readonly _loginService: LoginService,
+        private readonly _userNameService: UserNameService,
         private readonly _router: Router
         ) {}
 
@@ -24,7 +26,7 @@ export class StartPageComponent implements OnInit {
     }
 
     public get loggedIn():boolean {
-        return this.loginService.getLoggedInStatus();
+        return this._loginService.getLoggedInStatus();
     }
     
     onSubmit(event: any) {
@@ -32,7 +34,8 @@ export class StartPageComponent implements OnInit {
         if(input === "") {
             this.placeHolder = "You must enter a name!!"
         } else {
-            this.loginService.setLoggedIn(true);
+            this._loginService.setLoggedIn(true);
+            this._userNameService.setUserName(event.target.userInput.value);
             this.showProfileEvent.emit('working')
             localStorage.setItem('userName', event.target.userInput.value)
             this._router.navigate(['/pokemons'])

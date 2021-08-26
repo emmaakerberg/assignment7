@@ -2,6 +2,7 @@ import { SlicePipe } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core"
 import { Pokemon } from "../models/pokemon.model";
+import { CatchedPokemonService } from "../services/catched-pokemons.service";
 import { LoginService } from "../services/login.service";
 import { PokemonApiService } from "../services/pokemon-api.service";
 
@@ -20,13 +21,14 @@ export class PokemonListComponent implements OnInit{
     
     constructor(
         private readonly _loginService: LoginService,
-        private readonly _pokemonApiService: PokemonApiService
+        private readonly _pokemonApiService: PokemonApiService,
+        private readonly _catchedPokemonsService: CatchedPokemonService
         ) {
         this.loggedIn = this._loginService.getLoggedInStatus();
     }
     
     ngOnInit() : void {
-        this._pokemonApiService.getPokemons(10)
+        this._pokemonApiService.getPokemons(12)
             .subscribe(
                 (pokemons: any) => {
                     (pokemons.results).forEach((pokemon: any) => {
@@ -61,6 +63,9 @@ export class PokemonListComponent implements OnInit{
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
+    public catchPokemon(pokemon : Pokemon) {
+        this._catchedPokemonsService.catchPokemon(pokemon);
+    }
     
 
 }

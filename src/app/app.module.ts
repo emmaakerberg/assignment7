@@ -11,6 +11,8 @@ import { LoginService } from './services/login.service';
 import { StartPageComponent } from './start-page/start-page.component';
 import { ProfilePage } from './profile-page/profile-page.component';
 import { PokemonApiService } from './services/pokemon-api.service';
+import { CatchedPokemonService } from './services/catched-pokemons.service';
+import { UserNameService } from './services/user-name.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { PokemonApiService } from './services/pokemon-api.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginService, PokemonApiService],
+  providers: [LoginService, PokemonApiService, CatchedPokemonService, UserNameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

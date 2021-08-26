@@ -1,4 +1,8 @@
 <header>
     <a routerLink="/"><img src="../../assets/logo.png" class="my-2"></a>
-    <h1 *ngIf="status" (click)="goToProfile()">Nu funkar det</h1>
+    <div *ngIf="status" (click)="goToProfile()" class="profile">
+        <span class="material-icons">account_circle</span>
+        <p>{{ userName }}</p>
+    </div>
+     
 </header>
