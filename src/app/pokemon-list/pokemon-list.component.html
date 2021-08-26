@@ -22,6 +22,7 @@
                 <div id="bottom-right">
                     <p class="label">Abilities:</p>
                     <p *ngFor="let ability of pokemon.abilities">{{ability}}</p>
+                    <p *ngIf="pokemon.catched">Is catched</p>
                 </div>
             </div>
         </div>

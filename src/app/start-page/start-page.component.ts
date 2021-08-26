@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component } from "@angular/core";
 import { LoginService } from "../services/login.service";
 import { Router } from "@angular/router";
 import { UserNameService } from "../services/user-name.service";
@@ -8,12 +8,11 @@ import { UserNameService } from "../services/user-name.service";
     templateUrl: './start-page.component.html', 
     styleUrls: ['./start-page.component.css']
 })
-export class StartPageComponent implements OnInit {
+export class StartPageComponent {
 
 
     //private userName: string;
     public placeHolder : string = "Enter name";
-    @Output() showProfileEvent = new EventEmitter<string>()
 
     constructor(
         private readonly _loginService: LoginService,
@@ -21,9 +20,6 @@ export class StartPageComponent implements OnInit {
         private readonly _router: Router
         ) {}
 
-    ngOnInit(): void {
-        console.log('Start page')
-    }
 
     public get loggedIn():boolean {
         return this._loginService.getLoggedInStatus();
@@ -36,7 +32,6 @@ export class StartPageComponent implements OnInit {
         } else {
             this._loginService.setLoggedIn(true);
             this._userNameService.setUserName(event.target.userInput.value);
-            this.showProfileEvent.emit('working')
             localStorage.setItem('userName', event.target.userInput.value)
             this._router.navigate(['/pokemons'])
         }

@@ -6,6 +6,7 @@ export interface Pokemon {
     types: string[]
     stats: Stats[]
     img: string
+    catched: boolean
 }
 
 export interface Stats {

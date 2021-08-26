@@ -1,12 +1,8 @@
-import { SlicePipe } from "@angular/common";
-import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core"
 import { Pokemon } from "../models/pokemon.model";
 import { CatchedPokemonService } from "../services/catched-pokemons.service";
 import { LoginService } from "../services/login.service";
 import { PokemonApiService } from "../services/pokemon-api.service";
-
-
 
 @Component({
     selector: 'app-pokemon-list',
@@ -28,44 +24,11 @@ export class PokemonListComponent implements OnInit{
     }
     
     ngOnInit() : void {
-        this._pokemonApiService.getPokemons(12)
-            .subscribe(
-                (pokemons: any) => {
-                    (pokemons.results).forEach((pokemon: any) => {
-                        this._pokemonApiService.getPokemon(pokemon.name)
-                            .subscribe(
-                                (pokemon: any) => {
-                                    let tempPokemon: Pokemon ={
-                                        name: this.toUpperCase(pokemon.name),
-                                        height: pokemon.height,
-                                        weight: pokemon.weight,
-                                        types: [...pokemon.types].map(t => t.type.name),
-                                        img: pokemon.sprites.front_default,
-                                        stats: [...pokemon.stats].map(s => s = {
-                                            name: s.stat.name,
-                                            base: s.base_stat
-                                        }),
-                                        abilities: [...pokemon.abilities].map(a => a.ability.name)
-                                    }
-                                    this.pokemons.push(tempPokemon)
-                                }
-                            )  
-                    });
-                },
-                (error: HttpErrorResponse) => {
-                    console.log(error)
-                }
-                
-            )
-    }
-
-    private toUpperCase(name: string) {
-        return name.charAt(0).toUpperCase() + name.slice(1);
+        this.pokemons = this._pokemonApiService.pokemons;       
     }
 
     public catchPokemon(pokemon : Pokemon) {
+        pokemon.catched = true;
         this._catchedPokemonsService.catchPokemon(pokemon);
     }
-    
-
 }

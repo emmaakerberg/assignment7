@@ -9,7 +9,9 @@ export class CatchedPokemonService {
     private _catchedPokemons : Pokemon[] = []
 
     public catchPokemon(pokemon: Pokemon) {
-        this._catchedPokemons.push(pokemon);
+        if(!this._catchedPokemons.includes(pokemon)) {
+            this._catchedPokemons.push(pokemon);
+        }
     }
 
     public get catchedPokemons()  {

@@ -17,7 +17,6 @@ export class UserNameService {
     }
 
     canActivate(): boolean {
-        console.log(this._userName)
         if (this._userName !== null) {
             this._loginService.setLoggedIn(true);
             this._router.navigate(["/pokemons"]);
