@@ -1,37 +1,32 @@
-<div class="container">
-    <h3 class="d-flex justify-content-center mt-5">Trainer Page - {{userName}}</h3>
-        <button class="float-right" (click)="logOut()">Log Out</button>
-        <button (click)="goToPokemonsPage()">Get more Pokémons</button>
+<div class="profile-container">
+    <button class="get-more-pokemons-button button" (click)="goToPokemonsPage()">Get more Pokémons</button>
+    <h3 class="d-flex justify-content-center mt-5">Your catched pokemons</h3>
     
-
-        
-        <div id="card-container">
-            <div *ngFor="let pokemon of catchedPokemons" class="PokemonCard">
-                <div id="info-top">
-                    <p id="pokemon-name">{{pokemon.name}}</p>
-                    <p id="pokemon-hp">{{pokemon.stats[0].base}} {{pokemon.stats[0].name.toUpperCase()}}</p>
-                </div>
-                <img class="pokemon-img"src ="{{pokemon.img}}">
-                <br>
-                <p class="size">Height: {{pokemon.height}} dm, Weight: {{pokemon.weight}} hg</p>
+    <div id="card-container">
+        <div *ngFor="let pokemon of catchedPokemons" class="PokemonCard">
+            <div id="info-top">
+                <p id="pokemon-name">{{pokemon.name}}</p>
+                <p id="pokemon-hp">{{pokemon.stats[0].base}} {{pokemon.stats[0].name.toUpperCase()}}</p>
+            </div>
+            <img class="pokemon-img"src ="{{pokemon.img}}">
+            <br>
+            <p class="size">Height: {{pokemon.height}} dm, Weight: {{pokemon.weight}} hg</p>
+                <span class="label">Type(s): </span>
+                <span *ngFor="let type of pokemon.types" class="pokemon-type">{{type}} </span>
                 
-                    <span class="label">Type(s): </span>
-                    <span *ngFor="let type of pokemon.types" class="pokemon-type">{{type}} </span>
-                    
-                <div id="info-bottom">
-                    <div id="bottom-left">
-                        <p class="label">Stats:</p>
-                        <p>{{pokemon.stats[1].base}} {{pokemon.stats[1].name}}</p>
-                        <p>{{pokemon.stats[2].base}} {{pokemon.stats[2].name}}</p>
-                        <p>{{pokemon.stats[5].base}} {{pokemon.stats[5].name}}</p>
-                    </div>
-                    <div id="bottom-right">
-                        <p class="label">Abilities:</p>
-                        <p *ngFor="let ability of pokemon.abilities">{{ability}}</p>
-                    </div>
+            <div id="info-bottom">
+                <div id="bottom-left">
+                    <p class="label">Stats:</p>
+                    <p>{{pokemon.stats[1].base}} {{pokemon.stats[1].name}}</p>
+                    <p>{{pokemon.stats[2].base}} {{pokemon.stats[2].name}}</p>
+                    <p>{{pokemon.stats[5].base}} {{pokemon.stats[5].name}}</p>
+                </div>
+                <div id="bottom-right">
+                    <p class="label">Abilities:</p>
+                    <p *ngFor="let ability of pokemon.abilities">{{ability}}</p>
                 </div>
             </div>
         </div>
-        
-    
+    </div>
+    <button class="log-out-button button" (click)="logOut()">Log Out</button>
 </div>
