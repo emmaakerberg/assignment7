@@ -10,18 +10,6 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-.PokemonCard {
-    margin-top: 10px;
-    height: 360px;
-    width: 250px;
-    border-radius: 10px;
-    border: 9px solid;
-    border-color: rgb(255, 230, 0);
-    background-color: rgb(255, 230, 176);
-    text-align: center;
-}
-
-
 
 .pokemon-img {
     height:100px;
