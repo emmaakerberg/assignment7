@@ -13,6 +13,7 @@ import { ProfilePage } from './profile-page/profile-page.component';
 import { PokemonApiService } from './services/pokemon-api.service';
 import { CatchedPokemonService } from './services/catched-pokemons.service';
 import { UserNameService } from './services/user-name.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserNameService } from './services/user-name.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [LoginService, PokemonApiService, CatchedPokemonService, UserNameService],
   bootstrap: [AppComponent]

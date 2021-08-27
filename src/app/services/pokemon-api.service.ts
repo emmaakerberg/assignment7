@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Pokemon } from "../models/pokemon.model";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -8,24 +8,27 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 export class PokemonApiService {
 
-    private _pokemons: Pokemon[] = []
+    private _pokemons: Pokemon[] = [];
+    private _totalPokemons : number = 0;
 
     constructor(private readonly http: HttpClient) {
-        this.populatePokemons()
+
     }
 
-    getPokemons(limit: number) {
-        return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
+    getPokemons(limit: number, offset: number) {
+        return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
     }
 
     getPokemon(name: string) {
         return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${name}`)
     }
 
-    populatePokemons() {
-        return this.getPokemons(12)
+    populatePokemons(limit: number, offset: number) {
+        return this.getPokemons(limit, offset)
         .subscribe(
             (pokemons: any) => {
+                this._totalPokemons = pokemons.count;
+
                 (pokemons.results).forEach((pokemon: any) => {
                     this.getPokemon(pokemon.name)
                         .subscribe(
@@ -61,5 +64,22 @@ export class PokemonApiService {
 
     get pokemons() {
         return this._pokemons;
+    }
+
+    getAllPokemons() {
+        console.log(this._pokemons[0], "in api")
+        return this._pokemons;
+    }
+
+    set pokemons(pokemons : Pokemon[]) {
+        this._pokemons = pokemons
+    }
+
+    get totalPokemons() {
+        return this._totalPokemons;
+    }
+
+    getspecificPokemon(index : number) {
+        return this._pokemons[index]
     }
 }

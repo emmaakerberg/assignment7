@@ -1,6 +1,10 @@
-<div class="container">
+<div class="container mb-4">
     <div id="card-container">
-        <div *ngFor="let pokemon of pokemons" class="PokemonCard" (click)="catchPokemon(pokemon)">
+        <div *ngFor="let pokemon of pokemons | 
+        paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalPokemons() }" 
+        class="PokemonCard" 
+        (click)="catchPokemon(pokemon)"
+        >
             <div id="info-top">
                 <p id="pokemon-name">{{pokemon.name}}</p>
                 <p id="pokemon-hp">{{pokemon.stats[0].base}} {{pokemon.stats[0].name.toUpperCase()}}</p>
@@ -27,5 +31,7 @@
             </div>
         </div>
     </div>
+    
 </div>
+<pagination-controls (pageChange)="page = $event; clearPokemons(); getPokemonsApiCall()"></pagination-controls>
 

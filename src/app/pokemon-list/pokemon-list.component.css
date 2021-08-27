@@ -16,3 +16,7 @@
     transition: 0.2s ease;
     cursor: pointer;
 }
+
+pagination-controls {
+    text-align: center;
+}

@@ -3,6 +3,7 @@ import { LoginService } from "../services/login.service";
 import { Router } from "@angular/router";
 import { UserNameService } from "../services/user-name.service";
 import { CatchedPokemonService } from "../services/catched-pokemons.service";
+import { PokemonApiService } from "../services/pokemon-api.service";
 import { Pokemon } from "../models/pokemon.model";
 
 @Component({
@@ -18,6 +19,7 @@ export class ProfilePage {
         private readonly _loginService: LoginService,
         private readonly _userNameService: UserNameService,
         private readonly _catchedPokemonService: CatchedPokemonService,
+        private readonly _pokemonApiService: PokemonApiService,
         private readonly _router: Router) {
         this.catchedPokemons = this._catchedPokemonService.catchedPokemons;
     }
@@ -30,6 +32,7 @@ export class ProfilePage {
     }
 
     goToPokemonsPage(){
+        this._pokemonApiService.pokemons = []
         this._router.navigate(['/pokemons'])
     }
 

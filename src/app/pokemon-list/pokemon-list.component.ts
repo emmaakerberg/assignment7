@@ -14,6 +14,8 @@ export class PokemonListComponent implements OnInit{
     public loggedIn: boolean;
     public userName :string | null = localStorage.getItem('userName');
     public pokemons: Pokemon[] = []
+    public page = 1;
+    
     
     constructor(
         private readonly _loginService: LoginService,
@@ -24,11 +26,40 @@ export class PokemonListComponent implements OnInit{
     }
     
     ngOnInit() : void {
-        this.pokemons = this._pokemonApiService.pokemons;       
+          this.getPokemonsApiCall()    
     }
 
-    public catchPokemon(pokemon : Pokemon) {
+    getPokemonsApiCall() {
+        this._pokemonApiService.populatePokemons(10, (this.page - 1) * 10)
+        this.pokemons = this._pokemonApiService.pokemons; 
+        this.catchCheck()
+    }
+
+    catchCheck() {
+        const foo = this._pokemonApiService.getAllPokemons()
+        console.log(this._catchedPokemonsService.catchedPokemons)
+        console.log(this.pokemons, "hhhh")
+        console.log(this.pokemons)
+        console.log(foo[0], "jkasjd")
+        
+        
+        this._pokemonApiService.pokemons = this.pokemons;
+    }
+
+    catchPokemon(pokemon : Pokemon) {
         pokemon.catched = true;
         this._catchedPokemonsService.catchPokemon(pokemon);
+    }
+
+    totalPokemons() {
+        return this._pokemonApiService.totalPokemons;
+    }
+
+    getPokemons() {
+        return this._pokemonApiService.pokemons;
+    }
+
+    clearPokemons() {
+        this._pokemonApiService.pokemons = [];
     }
 }
