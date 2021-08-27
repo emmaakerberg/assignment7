@@ -9,8 +9,6 @@ import { UserNameService } from "../services/user-name.service";
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
-
     constructor(
         private readonly _logInService: LoginService,
         private readonly _router: Router,
@@ -18,18 +16,24 @@ export class HeaderComponent {
         ) {
     }
 
+    /*
+    Gets the status from the login service
+    */
     get status() {
         return this._logInService.getLoggedInStatus()
     }
 
+    /*
+    Gets the username from the username service
+    */
     get userName() {
         return this._userName.userName
     }
 
+    /*
+    Routes to the profile page
+    */
     goToProfile() {
         this._router.navigate(['/profile'])
     }
-    
-
-
 }

@@ -7,20 +7,18 @@ import { Pokemon } from "../models/pokemon.model";
 export class CatchedPokemonService {
 
     private _catchedPokemons : Pokemon[] = []
-    private _catchedPokemonsNames : string [] = []
 
     catchPokemon(pokemon: Pokemon) {
         if(!this._catchedPokemons.includes(pokemon)) {
             this._catchedPokemons.push(pokemon);
-            this._catchedPokemonsNames.push(pokemon.name)
         }
+    }
+
+    clearAllPokemons() {
+        this._catchedPokemons = [];
     }
 
     get catchedPokemons()  {
         return this._catchedPokemons;
-    }
-
-    get catchedPokemonsNames() {
-        return this._catchedPokemonsNames;
     }
 }

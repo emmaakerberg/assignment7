@@ -12,19 +12,18 @@ export class PokemonApiService {
     private _totalPokemons : number = 0;
 
     constructor(private readonly http: HttpClient) {
-
     }
 
-    getPokemons(limit: number, offset: number) {
-        return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
+    getPokemons(limit: number) {
+        return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
     }
 
     getPokemon(name: string) {
         return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${name}`)
     }
 
-    populatePokemons(limit: number, offset: number) {
-        return this.getPokemons(limit, offset)
+    populatePokemons() {
+        return this.getPokemons(150)
         .subscribe(
             (pokemons: any) => {
                 this._totalPokemons = pokemons.count;
@@ -54,7 +53,6 @@ export class PokemonApiService {
             (error: HttpErrorResponse) => {
                 console.log(error)
             }
-            
         )
     }
 
@@ -66,20 +64,11 @@ export class PokemonApiService {
         return this._pokemons;
     }
 
-    getAllPokemons() {
-        console.log(this._pokemons[0], "in api")
-        return this._pokemons;
-    }
-
     set pokemons(pokemons : Pokemon[]) {
         this._pokemons = pokemons
     }
 
     get totalPokemons() {
         return this._totalPokemons;
-    }
-
-    getspecificPokemon(index : number) {
-        return this._pokemons[index]
     }
 }

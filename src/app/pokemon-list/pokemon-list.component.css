@@ -20,3 +20,13 @@
 pagination-controls {
     text-align: center;
 }
+
+.pokeball {
+    width: 50px;
+}
+
+.disabled {
+    box-shadow:none !important;
+    transform: none;
+    opacity: 70%;
+}

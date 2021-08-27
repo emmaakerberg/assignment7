@@ -2,7 +2,6 @@ header {
     text-align: center;
     background-color: rgb(206, 11, 5);
     border-bottom: 3px solid;
-
 }
 .profile {
     float: right;
@@ -17,9 +16,9 @@ p {
 .profile :hover {
     cursor: pointer;
 }
+
 img {
     width: 300px;
-
 }
 
 .material-icons {

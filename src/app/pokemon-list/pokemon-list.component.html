@@ -1,20 +1,19 @@
 <div class="container mb-4">
     <div id="card-container">
-        <div *ngFor="let pokemon of pokemons | 
-        paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalPokemons() }" 
-        class="PokemonCard" 
-        (click)="catchPokemon(pokemon)"
+        <div *ngFor="let pokemon of pokemons"
+        class="PokemonCard" [ngClass]="{'disabled':pokemon.catched}"
+        (click)="!pokemon.catched && catchPokemon(pokemon)"
         >
             <div id="info-top">
                 <p id="pokemon-name">{{pokemon.name}}</p>
                 <p id="pokemon-hp">{{pokemon.stats[0].base}} {{pokemon.stats[0].name.toUpperCase()}}</p>
             </div>
+
             <img class="pokemon-img"src ="{{pokemon.img}}">
             <br>
             <p class="size">Height: {{pokemon.height}} dm, Weight: {{pokemon.weight}} hg</p>
-            
-                <span class="label">Type(s): </span>
-                <span *ngFor="let type of pokemon.types" class="pokemon-type">{{type}} </span>
+            <span class="label">Type(s): </span>
+            <span *ngFor="let type of pokemon.types" class="pokemon-type">{{type}} </span>
                 
             <div id="info-bottom">
                 <div id="bottom-left">
@@ -26,12 +25,11 @@
                 <div id="bottom-right">
                     <p class="label">Abilities:</p>
                     <p *ngFor="let ability of pokemon.abilities">{{ability}}</p>
-                    <p *ngIf="pokemon.catched">Is catched</p>
                 </div>
             </div>
+            
+            <img *ngIf="pokemon.catched" src="../../assets/pokeball.png" class="pokeball">
         </div>
     </div>
-    
 </div>
-<pagination-controls (pageChange)="page = $event; clearPokemons(); getPokemonsApiCall()"></pagination-controls>
 

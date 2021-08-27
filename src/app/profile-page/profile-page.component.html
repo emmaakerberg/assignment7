@@ -1,6 +1,8 @@
 <div class="profile-container">
     <button class="get-more-pokemons-button button" (click)="goToPokemonsPage()">Get more Pokémons</button>
     <h3 class="d-flex justify-content-center mt-5">Your catched pokemons</h3>
+
+    <p *ngIf="catchedPokemons.length === 0">You haven't catched any Pokemons</p>
     
     <div id="card-container">
         <div *ngFor="let pokemon of catchedPokemons" class="PokemonCard">

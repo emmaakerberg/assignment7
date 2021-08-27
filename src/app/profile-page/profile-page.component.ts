@@ -28,11 +28,12 @@ export class ProfilePage {
         localStorage.clear();
         this._loginService.setLoggedIn(false);
         this._userNameService.setUserName(null)
+        this._catchedPokemonService.clearAllPokemons();
+        this._pokemonApiService.pokemons = [];
         this._router.navigate(['/login'])
     }
 
     goToPokemonsPage(){
-        this._pokemonApiService.pokemons = []
         this._router.navigate(['/pokemons'])
     }
 

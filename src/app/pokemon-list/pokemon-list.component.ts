@@ -16,7 +16,6 @@ export class PokemonListComponent implements OnInit{
     public pokemons: Pokemon[] = []
     public page = 1;
     
-    
     constructor(
         private readonly _loginService: LoginService,
         private readonly _pokemonApiService: PokemonApiService,
@@ -29,26 +28,18 @@ export class PokemonListComponent implements OnInit{
           this.getPokemonsApiCall()    
     }
 
+    /*
+    
+    */
     getPokemonsApiCall() {
-        this._pokemonApiService.populatePokemons(10, (this.page - 1) * 10)
+        this._pokemonApiService.populatePokemons()
         this.pokemons = this._pokemonApiService.pokemons; 
-        this.catchCheck()
-    }
-
-    catchCheck() {
-        const foo = this._pokemonApiService.getAllPokemons()
-        console.log(this._catchedPokemonsService.catchedPokemons)
-        console.log(this.pokemons, "hhhh")
-        console.log(this.pokemons)
-        console.log(foo[0], "jkasjd")
-        
-        
-        this._pokemonApiService.pokemons = this.pokemons;
     }
 
     catchPokemon(pokemon : Pokemon) {
         pokemon.catched = true;
         this._catchedPokemonsService.catchPokemon(pokemon);
+        console.log("fångad");
     }
 
     totalPokemons() {
@@ -57,9 +48,5 @@ export class PokemonListComponent implements OnInit{
 
     getPokemons() {
         return this._pokemonApiService.pokemons;
-    }
-
-    clearPokemons() {
-        this._pokemonApiService.pokemons = [];
     }
 }
