@@ -5,7 +5,6 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "buildProd": "ng build --base-href=/assignment7/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
