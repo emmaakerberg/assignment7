@@ -14,7 +14,6 @@ export class PokemonListComponent implements OnInit{
     public loggedIn: boolean;
     public userName :string | null = localStorage.getItem('userName');
     public pokemons: Pokemon[] = []
-    public page = 1;
     
     constructor(
         private readonly _loginService: LoginService,
@@ -29,24 +28,19 @@ export class PokemonListComponent implements OnInit{
     }
 
     /*
-    
+    Populate the array of Pokemons with pokemons from the PokeApi using
     */
     getPokemonsApiCall() {
         this._pokemonApiService.populatePokemons()
         this.pokemons = this._pokemonApiService.pokemons; 
     }
 
+    /**
+     * Catch a pokemon by setting boolean catched to true and and it to the catched array
+     * @param pokemon pokemon to catch
+     */
     catchPokemon(pokemon : Pokemon) {
         pokemon.catched = true;
         this._catchedPokemonsService.catchPokemon(pokemon);
-        console.log("fångad");
-    }
-
-    totalPokemons() {
-        return this._pokemonApiService.totalPokemons;
-    }
-
-    getPokemons() {
-        return this._pokemonApiService.pokemons;
     }
 }

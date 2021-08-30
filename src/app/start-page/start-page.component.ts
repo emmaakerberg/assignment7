@@ -10,21 +10,26 @@ import { UserNameService } from "../services/user-name.service";
 })
 export class StartPageComponent {
 
-
-    //private userName: string;
     public placeHolder : string = "Enter name";
 
     constructor(
         private readonly _loginService: LoginService,
         private readonly _userNameService: UserNameService,
         private readonly _router: Router
-        ) {}
+    ) {}
 
-
-    public get loggedIn():boolean {
+    /**
+     * Check if user is logged in. Returns true if user is logged in
+     */
+    get loggedIn():boolean {
         return this._loginService.getLoggedInStatus();
     }
     
+    /**
+     * If user input is not empty the use- will be redirected to the /pokemon
+     * else the user will be asked to enter a name
+     * @param event 
+     */
     onSubmit(event: any) {
         let input: string = event.target.userInput.value
         if(input === "") {

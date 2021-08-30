@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Pokemon } from "../models/pokemon.model";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -9,25 +9,39 @@ import { HttpErrorResponse } from "@angular/common/http";
 export class PokemonApiService {
 
     private _pokemons: Pokemon[] = [];
-    private _totalPokemons : number = 0;
+    private _numberOfPokemonsToGet = 150;
 
     constructor(private readonly http: HttpClient) {
+
     }
 
+    /**
+     * Uses the pokemon name returnd from the api call to get more information
+     * about a specific pokemon
+     * @param limit number of pokemons to return from the PokeApi
+     * @returns a json object with the amount of pokemons requested
+     */
     getPokemons(limit: number) {
         return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
     }
 
+    /**
+     * Used to get detailed information about a specific pokemon
+     * @param name of a pokemon
+     * @returns a json object with information about the specific pokemon
+     */
     getPokemon(name: string) {
         return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${name}`)
     }
 
+    /**
+     * Populate a pokemons array with Pokemons fromt the api call.
+     * Values are set to the corresponding values in the Pokemon Model
+     */
     populatePokemons() {
-        return this.getPokemons(150)
+        return this.getPokemons(this._numberOfPokemonsToGet)
         .subscribe(
             (pokemons: any) => {
-                this._totalPokemons = pokemons.count;
-
                 (pokemons.results).forEach((pokemon: any) => {
                     this.getPokemon(pokemon.name)
                         .subscribe(
@@ -56,19 +70,25 @@ export class PokemonApiService {
         )
     }
 
+    /**
+     * @param name of a pokemon
+     * @returns the name vit first letter to uppercase
+     */
     private toUpperCase(name: string) {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
+    /**
+     * Get all pokemons
+     */
     get pokemons() {
         return this._pokemons;
     }
 
-    set pokemons(pokemons : Pokemon[]) {
-        this._pokemons = pokemons
-    }
-
-    get totalPokemons() {
-        return this._totalPokemons;
+    /**
+     * Set the pokemons array to an empty array
+     */
+    clearPokemons() {
+        this._pokemons = []
     }
 }

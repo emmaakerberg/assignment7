@@ -1,3 +1,7 @@
+/**
+ * Model of a pokemon, filled in with relevant data from the [PokeApi](https://pokeapi.co/) 
+ * 
+ */
 export interface Pokemon {
     name: string
     height: number

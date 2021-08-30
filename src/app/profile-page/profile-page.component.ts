@@ -24,15 +24,22 @@ export class ProfilePage {
         this.catchedPokemons = this._catchedPokemonService.catchedPokemons;
     }
 
+    /**
+     * Log out a user by clearing the local storage and necessary service properies set to a
+     * logged out state
+     */
     logOut() {
         localStorage.clear();
         this._loginService.setLoggedIn(false);
         this._userNameService.setUserName(null)
         this._catchedPokemonService.clearAllPokemons();
-        this._pokemonApiService.pokemons = [];
+        this._pokemonApiService.clearPokemons()
         this._router.navigate(['/login'])
     }
 
+    /**
+     * Route to /pokemons
+     */
     goToPokemonsPage(){
         this._router.navigate(['/pokemons'])
     }
